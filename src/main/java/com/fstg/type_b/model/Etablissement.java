@@ -4,6 +4,7 @@
  */
 package com.fstg.type_b.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -22,12 +23,18 @@ private Long id;
 private String reference;
 private String intitule;
 
-@OneToMany(mappedBy="etablissement")
+@OneToMany(mappedBy="etablissement", cascade = CascadeType.ALL)
+@JsonManagedReference
 private List<Laboratoire> laboratoires;
 
-@OneToMany(mappedBy="etablissement")
+@OneToMany(mappedBy="etablissement", cascade = CascadeType.ALL)
+@JsonManagedReference
 private List<EntiteOrganisatrice> entiteOrganisatrices;
-
+@OneToMany(mappedBy="etablissement", cascade = CascadeType.ALL)
+@JsonManagedReference
 private List<CommiteOrganisation> commiteOrganisations;
 
+@OneToMany(mappedBy="etablissement", cascade = CascadeType.ALL)
+@JsonManagedReference
+private List<Chercheur> chercheurs;
 }

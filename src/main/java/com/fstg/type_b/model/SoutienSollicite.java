@@ -4,6 +4,7 @@
  */
 package com.fstg.type_b.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
@@ -24,6 +25,15 @@ private String montant;
 private BigDecimal nombre;
 private String remarques;
 private BigDecimal montantGlobal;
-@OneToOne
+
+@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "demande_id", nullable = true)
+@JsonBackReference
 private Demande demande;
+
+@JsonBackReference(value="soutien-demande")
+public Demande getDemande(){
+return this.demande;
+}
+
 }

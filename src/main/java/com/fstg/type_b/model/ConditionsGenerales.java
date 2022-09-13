@@ -5,7 +5,6 @@
 package com.fstg.type_b.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
@@ -15,15 +14,10 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class ContributionEtablissement implements Serializable {
+public class ConditionsGenerales implements Serializable {
     @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
-private BigDecimal montant;
-
-@ManyToOne
-private Etablissement etablissement;
-
-@ManyToOne
-private NatureContribution natureContribution;
+private String libelle;
+private String description;
 }

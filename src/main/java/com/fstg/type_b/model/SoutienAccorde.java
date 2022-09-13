@@ -4,6 +4,7 @@
  */
 package com.fstg.type_b.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.*;
@@ -21,4 +22,8 @@ public class SoutienAccorde implements Serializable{
 private Long id;
 private BigDecimal montant;
 
+@OneToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "demande_id", nullable = true)
+@JsonBackReference
+private Demande demande;
 }

@@ -6,6 +6,7 @@ package com.fstg.type_b.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -15,26 +16,20 @@ import org.hibernate.annotations.OnDeleteAction;
  *
  * @author USER
  */
-
 @Data
 @Entity
-public class CommiteOrganisation implements Serializable {
+public class Contributeur implements Serializable{
     @Id
-@GeneratedValue(strategy= GenerationType.AUTO)
+@GeneratedValue(strategy= GenerationType.AUTO )
 private Long id;
-private String nom; 
-private String prenom;
-private String telephone;
-private String email;
-private String ville;
-private String type;
-private String pays;
+private String organisme;
+private BigDecimal montant;
 
 @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "etablissement_id", nullable = true)
+  @JoinColumn(name = "nature_contribution_id", nullable = true)
   @OnDelete(action = OnDeleteAction.CASCADE)  
 @JsonBackReference
-private Etablissement etablissement;
+private NatureContribution natureContribution;
 
 @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "demande_id", nullable = true)

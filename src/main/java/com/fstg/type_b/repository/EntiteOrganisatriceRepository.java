@@ -4,7 +4,7 @@
  */
 package com.fstg.type_b.repository;
 
-import com.fstg.type_b.model.User;
+import com.fstg.type_b.model.EntiteOrganisatrice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author USER
  */
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface EntiteOrganisatriceRepository extends JpaRepository<EntiteOrganisatrice, Long> {
     
 }

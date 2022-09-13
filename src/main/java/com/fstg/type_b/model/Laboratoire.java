@@ -5,6 +5,7 @@
 package com.fstg.type_b.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -25,6 +26,7 @@ private Long id;
 private String libelle;
 
 @OneToMany(mappedBy="laboratoire")
+@JsonIgnore
 private List<Chercheur> chercheurs;
 
  @ManyToOne(fetch = FetchType.LAZY, optional = false)

@@ -4,6 +4,8 @@
  */
 package com.fstg.type_b.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -22,12 +24,12 @@ private Long id;
 private String libelle;
 
 
-@OneToMany
-private List<ContributionEtablissement> contributionEtablissements;
 
-@OneToMany
-private List<ContributionSponsors> contributionSponsors;
+@OneToMany(mappedBy="natureContribution", cascade = CascadeType.ALL)
+@JsonManagedReference
+private List<ContributionParticipant> contributionParticipants;
 
-@OneToMany
-private List<ContributionParticipant> contributionParticipant;
+@OneToMany(mappedBy = "natureContribution" , cascade = CascadeType.ALL)
+@JsonManagedReference
+private List<Contributeur> contributeurs;
 }

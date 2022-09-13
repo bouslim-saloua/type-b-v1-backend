@@ -5,6 +5,8 @@
 package com.fstg.type_b.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -31,6 +33,7 @@ private String responsable;
 @JsonBackReference
 private Etablissement etablissement;
 
-@OneToMany
+ @OneToMany(mappedBy = "entiteOrganisatrice", cascade = CascadeType.ALL)
+@JsonManagedReference
 private List<Demande> demandes;
 }

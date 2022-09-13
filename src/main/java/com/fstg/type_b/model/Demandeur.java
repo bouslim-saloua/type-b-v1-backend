@@ -4,28 +4,24 @@
  */
 package com.fstg.type_b.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import lombok.Data;
+
+
 
 /**
  *
  * @author USER
  */
-
 @Data
 @Entity
-public class TypeContributeur implements Serializable {
-
-    @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
-private String libelle;
-
-@OneToMany(mappedBy="typeContributeur", cascade = CascadeType.ALL)
+public class Demandeur extends User{
+    @OneToMany(mappedBy = "demandeur", cascade = CascadeType.ALL)
 @JsonManagedReference
-private List<ContributionParticipant> contributionsParticipants;
+    private List<Demande> demandes;
 }
