@@ -6,6 +6,7 @@ package com.fstg.type_b.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -29,4 +30,7 @@ private String responsable;
   @OnDelete(action = OnDeleteAction.CASCADE)
 @JsonBackReference
 private Etablissement etablissement;
+
+@OneToMany
+private List<Demande> demandes;
 }

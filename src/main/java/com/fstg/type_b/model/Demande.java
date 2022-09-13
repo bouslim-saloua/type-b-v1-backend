@@ -37,11 +37,22 @@ private String status;
 private Date dateEnvoi;
 private String remarque;
 private String lieu;
-private Long nombreParticipant;
+private Long nombreParticipantPrevus;
 private String siteWebManifestation;
+private String type;
+private String partenaires;
 
 @OneToMany(mappedBy="demande")
 private List<GestionFinanciere> gestionFinancieres;
-@OneToMany(mappedBy="demande")
-private List<
+
+@ManyToOne
+private Coordonnateur coordonnateur;
+
+@OneToOne 
+private SoutienSollicite soutienSollicite;
+
+@ManyToOne
+private EntiteOrganisatrice entiteOrganisatrice;
+
+//les partenaires
 }

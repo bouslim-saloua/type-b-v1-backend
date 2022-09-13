@@ -5,7 +5,7 @@
 package com.fstg.type_b.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.Data;
 
@@ -15,19 +15,10 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class NatureContribution implements Serializable{
+public class SoutienAccorde implements Serializable{
     @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
-private String libelle;
+private BigDecimal montant;
 
-
-@OneToMany
-private List<ContributionEtablissement> contributionEtablissements;
-
-@OneToMany
-private List<ContributionSponsors> contributionSponsors;
-
-@OneToMany
-private List<ContributionParticipant> contributionParticipant;
 }

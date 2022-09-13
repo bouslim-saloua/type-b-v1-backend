@@ -28,4 +28,6 @@ private List<Laboratoire> laboratoires;
 @OneToMany(mappedBy="etablissement")
 private List<EntiteOrganisatrice> entiteOrganisatrices;
 
+private List<CommiteOrganisation> commiteOrganisations;
+
 }

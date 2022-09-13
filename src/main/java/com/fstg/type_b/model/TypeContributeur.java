@@ -13,21 +13,16 @@ import lombok.Data;
  *
  * @author USER
  */
+
 @Data
 @Entity
-public class NatureContribution implements Serializable{
+public class TypeContributeur implements Serializable {
+
     @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
 private String libelle;
 
-
 @OneToMany
-private List<ContributionEtablissement> contributionEtablissements;
-
-@OneToMany
-private List<ContributionSponsors> contributionSponsors;
-
-@OneToMany
-private List<ContributionParticipant> contributionParticipant;
+private List<ContributionParticipant> contributionsParticipants;
 }
