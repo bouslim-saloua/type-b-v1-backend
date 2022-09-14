@@ -11,7 +11,7 @@
 
 <artifactId>spring-boot-starter-parent</artifactId>
 
-<version>2.7.3</version>
+<version>2.6.5</version>
 
 <relativePath/>
 
@@ -40,8 +40,89 @@
 
 <dependencies>
 
+<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.19.1</version>
+		</dependency>
+                
+                <!-- https://mvnrepository.com/artifact/org.olap4j/olap4j -->
 
 
+    <dependency>
+   <groupId>javax.servlet</groupId>
+   <artifactId>jstl</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.webjars</groupId>
+   <artifactId>bootstrap</artifactId>
+   <version>4.0.0</version>
+  </dependency>
+  <dependency>
+   <groupId>org.apache.tomcat.embed</groupId>
+   <artifactId>tomcat-embed-jasper</artifactId>
+   <scope>provided</scope>
+  </dependency>
+ <dependency>
+                <groupId>xml-apis</groupId>
+                <artifactId>xml-apis</artifactId>
+                <version>1.4.01</version>
+</dependency>
+  <dependency>
+   <groupId>org.codehaus.groovy</groupId>
+   <artifactId>groovy-all</artifactId>
+   <version>2.0.1</version>
+  </dependency>
+  <dependency>
+   <groupId>com.itextpdf</groupId>
+   <artifactId>itext-pdfa</artifactId>
+   <version>5.5.0</version>
+  </dependency>
+  <dependency>
+   <groupId>com.itextpdf</groupId>
+   <artifactId>itextpdf</artifactId>
+   <version>5.5.0</version>
+  </dependency>
+
+  
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+   
+</dependency>
+  <dependency>
+   <groupId>com.fasterxml.jackson.core</groupId>
+   <artifactId>jackson-core</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>com.fasterxml.jackson.core</groupId>
+   <artifactId>jackson-databind</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>com.fasterxml.jackson.core</groupId>
+   <artifactId>jackson-annotations</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-configuration-processor</artifactId>
+   <optional>true</optional>
+  </dependency>
+  <dependency>
+    <groupId>org.olap4j</groupId>
+    <artifactId>olap4j</artifactId>
+    <version>1.2.0</version>
+</dependency>
+
+<dependency>
+	<groupId>io.jsonwebtoken</groupId>
+	<artifactId>jjwt</artifactId>
+	<version>0.9.1</version>
+</dependency>
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>1.4.2.Final</version>
+  </dependency>
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
@@ -128,7 +209,21 @@
 </dependency>
 
 
+<dependency>
 
+<groupId>org.hsqldb</groupId>
+
+<artifactId>hsqldb</artifactId>
+
+<scope>runtime</scope>
+
+</dependency>
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+      <version>5.6.2</version>
+      <type>jar</type>
+    </dependency>
 </dependencies>
 
 
