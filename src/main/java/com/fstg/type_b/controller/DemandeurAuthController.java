@@ -5,13 +5,14 @@
 package com.fstg.type_b.controller;
 
 import com.fstg.type_b.model.CustomUserDetails;
+import com.fstg.type_b.model.Demandeur;
 import com.fstg.type_b.model.ERole;
 import com.fstg.type_b.model.Role;
-import com.fstg.type_b.model.User;
 import com.fstg.type_b.payload.request.LoginRequest;
 import com.fstg.type_b.payload.request.SignupRequest;
 import com.fstg.type_b.payload.response.JwtResponse;
 import com.fstg.type_b.payload.response.MessageResponse;
+import com.fstg.type_b.repository.DemandeurRepository;
 import com.fstg.type_b.repository.RoleRepository;
 import com.fstg.type_b.repository.UserRepository;
 import com.fstg.type_b.security.JwtUtils;
@@ -39,14 +40,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author USER
  */
 @Api
-@CrossOrigin(origins={"http://localhost:3000/","http://localhost:5000/"})
+@CrossOrigin(origins="http://localhost:3000/")
 @RestController
-@RequestMapping("/api/auth")
-public class UserAuthentificationController {
-	@Autowired
+@RequestMapping("/api/demandeur/auth")
+public class DemandeurAuthController {
+    @Autowired
+    UserRepository userRepository;
+     @Autowired
 	       AuthenticationManager authenticationManager;
 	@Autowired
-	       UserRepository userRepository;
+	       DemandeurRepository demandeurRepository;
 	@Autowired
 	       RoleRepository roleRepository;
 	@Autowired
@@ -57,8 +60,8 @@ public class UserAuthentificationController {
 
 //signIn
 
-@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+@PostMapping("/signIn")
+	public ResponseEntity<?> authenticateDemandeur(@Valid @RequestBody LoginRequest loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -75,20 +78,20 @@ userDetails.getNom(), userDetails.getPrenom(), userDetails.getTelephone(),roles)
 	}
 
 @PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	public ResponseEntity<?> registerDemandeur(@Valid @RequestBody SignupRequest signUpRequest) {
 		//Error when email is already in use
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+		if (demandeurRepository.existsByEmail(signUpRequest.getEmail()) || userRepository.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
 
-            //Error when telephone is already in use!
-if(userRepository.existsByTelephone(signUpRequest.getTelephone())){
+            //Error when phone is already in use!
+if(demandeurRepository.existsByTelephone(signUpRequest.getTelephone()) || userRepository.existsByTelephone(signUpRequest.getTelephone())){
 return ResponseEntity.badRequest().body(new MessageResponse("Erorr: N° Telephone est déjà utilisé!"));
 }
-		// Create new user's account
-		  User user = new User( signUpRequest.getNom(), signUpRequest.getPrenom(),signUpRequest.getTelephone(), signUpRequest.getEmail(),
+		// Create new demandeur's account
+		  Demandeur demandeur = new Demandeur( signUpRequest.getNom(), signUpRequest.getPrenom(),signUpRequest.getTelephone(), signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()), signUpRequest.getProfession());
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -97,23 +100,14 @@ return ResponseEntity.badRequest().body(new MessageResponse("Erorr: N° Telephon
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
-				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN);//.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-					roles.add(adminRole);
-					break;
 				
-				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER);//.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
-				}
+				
 			});
 		}
-		user.setRoles(roles);
-		userRepository.save(user);
-		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+		demandeur.setRoles(roles);
+		demandeurRepository.save(demandeur);
+		return ResponseEntity.ok(new MessageResponse("Account registered successfully!"));
 	}
-    
-
 }
-

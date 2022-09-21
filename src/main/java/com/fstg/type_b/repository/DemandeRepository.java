@@ -15,5 +15,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DemandeRepository extends JpaRepository<Demande, Long>{
-    
+   // Demande findById(Long id);
 }

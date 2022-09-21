@@ -15,5 +15,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EtablissementRepository extends JpaRepository<Etablissement, Long> {
-    
+    Etablissement findByReference(String reference);
+Etablissement findByIntitule(String intitule);
 }

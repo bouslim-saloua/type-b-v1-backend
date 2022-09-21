@@ -80,6 +80,10 @@ private List<Contributeur> contributeurs;
 
 @OneToMany(mappedBy="demande", cascade = CascadeType.ALL)
 @JsonManagedReference
+private List<File> files;
+
+@OneToMany(mappedBy="demande", cascade = CascadeType.ALL)
+@JsonManagedReference
 private List<ContributionParticipant> contributionParticipants;
 
 @OneToMany(mappedBy="demande", cascade = CascadeType.ALL)
@@ -93,8 +97,9 @@ private List<CommiteOrganisation> commiteOrganisations;
 private Demandeur demandeur;
 //les partenaires
 
-@OneToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "soutien_accorde_id", nullable = true)
+@OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "demande")
 @JsonManagedReference
 private SoutienAccorde soutienAccorde;
 

@@ -24,4 +24,16 @@ public class Demandeur extends User{
     @OneToMany(mappedBy = "demandeur", cascade = CascadeType.ALL)
 @JsonManagedReference
     private List<Demande> demandes;
+
+
+public Demandeur(String nom, String prenom, String telephone, String email, String encode, String profession) {
+       super(nom, prenom, telephone, email, encode, profession);
+    }
+public Demandeur(String email, String encode){
+super(email, encode);
+}
+
+//default constructor
+public Demandeur(){
+}
 }

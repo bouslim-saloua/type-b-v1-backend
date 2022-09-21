@@ -5,6 +5,7 @@
 package com.fstg.type_b.repository;
 
 import com.fstg.type_b.model.Demandeur;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DemandeurRepository extends JpaRepository<Demandeur, Long> {
-    
+     Optional<Demandeur> findByEmail(String email);
+Demandeur findByTelephone(String telephone);
+Boolean existsByEmail(String email);
+Boolean existsByTelephone(String telephone);
 }

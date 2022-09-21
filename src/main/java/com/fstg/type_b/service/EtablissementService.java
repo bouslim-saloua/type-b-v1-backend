@@ -4,10 +4,16 @@
  */
 package com.fstg.type_b.service;
 
+import com.fstg.type_b.model.Etablissement;
+import java.util.List;
+
 /**
  *
  * @author USER
  */
+
+
 public interface EtablissementService {
-    
+int save(Etablissement etablissement);
+    List<Etablissement> findAll();
 }
